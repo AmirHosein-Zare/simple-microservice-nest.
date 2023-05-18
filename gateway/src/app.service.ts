@@ -1,8 +1,13 @@
 import { Injectable } from '@nestjs/common';
+import { AppGateway } from './SendMessage';
 
 @Injectable()
 export class AppService {
-  sendHello(message: string) {
-    
+
+  constructor(private readonly appGateway: AppGateway){}
+
+  sendHello(message: string){
+    this.appGateway.sendMessage(message);
   }
 }
+

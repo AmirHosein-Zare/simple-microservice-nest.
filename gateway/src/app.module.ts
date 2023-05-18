@@ -1,23 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import {Transport, ClientsModule} from "@nestjs/microservices";
+import {AppGateway} from './SendMessage';
 
 @Module({
-  imports: [
-    ClientsModule.register([
-      {
-        name: 'gateway',
-        transport: Transport.REDIS,
-        options: {
-          host: 'localhost',
-          port: 6379,
-        }
-      },
-    ]),
-  ],
+  imports: [],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppGateway],
 })
 export class AppModule {}
 
